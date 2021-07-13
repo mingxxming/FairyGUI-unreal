@@ -230,7 +230,7 @@ void UGObject::UpdateTransform()
     FScale2D Scale2D = FScale2D(Scale);
     FQuat2D Quat2D = FQuat2D(FMath::DegreesToRadians(Rotation));
     FMatrix2x2 Matrix = Concatenate(Quat2D, Scale2D);
-    DisplayObject->SetRenderTransform(FSlateRenderTransform(Matrix, Position));
+    DisplayObject->SetRenderTransform(FSlateRenderTransform(Matrix, bPivotAsAnchor ? (Position - Size * Pivot) : Position));
 }
 
 void UGObject::SetAlpha(float InAlpha)
